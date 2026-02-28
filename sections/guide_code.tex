@@ -1,0 +1,41 @@
+\subsection{Código Fuente}
+
+% --- Intro ---
+\begin{frame}{Código Fuente}
+    El código se resalta automáticamente usando \texttt{minted}.
+\end{frame}
+
+% --- Buenas Prácticas ---
+\begin{frame}{Buenas Prácticas}
+    \begin{TipP}
+        \textbf{Recomendación:} Se recomienda mantener el código en archivos
+        \texttt{.cpp} separados dentro de la carpeta \texttt{code/} y usar
+        \texttt{\textbackslash twocolumnminted} para incluirlos. Esto asegura que
+        el código sea compilable y testeable independientemente del documento.
+    \end{TipP}
+\end{frame}
+
+
+
+% --- Ejemplo con archivo externo ---
+%% NOTA: [fragile] es necesario para meter código (minted/verbatim)
+\begin{frame}[fragile]{Ejemplo: Archivo externo}
+    Ejemplo incluyendo el archivo \texttt{code/template.cpp} directamente:
+
+    % Inserta el archivo code/template.cpp 
+    \twocolumnminted{code/template.cpp}{cpp}{20}
+\end{frame}
+
+% --- Ejemplo con snippet inline ---
+%% NOTA: [fragile] es necesario para meter código (minted/verbatim)
+\begin{frame}[fragile]{Ejemplo: Código inline}
+    También es posible escribir código directamente en el archivo \texttt{.tex} usando el entorno \texttt{minted}, útil para snippets cortos:
+
+    \begin{minted}{cpp}
+    // Ejemplo de código inline
+    void solve() {
+        int n; cin >> n;
+        cout << n * 2 << endl;
+    }
+    \end{minted}
+\end{frame}

@@ -1,0 +1,57 @@
+\subsection{Entornos Personalizados}
+
+% --- Intro ---
+\begin{frame}{Entornos Personalizados}
+    El template incluye varios entornos predefinidos para estructurar las
+    diapositivas de forma clara y visual.
+\end{frame}
+
+% --- Definiciones y Teoremas ---
+\begin{frame}{Definiciones y Teoremas}
+    \begin{DefinitionP}[title=Definición Formal]
+        Utiliza este entorno para introducir formalmente nuevos conceptos,
+        estructuras de datos o términos clave. El argumento opcional
+        \texttt{title} permite dar un nombre descriptivo a la definición.
+    \end{DefinitionP}
+
+    \begin{TheoremP}[title=Propiedad Matemática]
+        El entorno \texttt{TheoremP} sirve para destacar propiedades matemáticas
+        fundamentales, lemas o teoremas que justifican la corrección o
+        complejidad de un algoritmo.
+    \end{TheoremP}
+\end{frame}
+
+% --- Consejos y Advertencias ---
+\begin{frame}{Consejos y Advertencias}
+    \begin{TipP}
+        Este entorno se usa para dar consejos o recomendaciones prácticas que
+        no son necesariamente reglas estrictas, pero ayudan a resolver
+        problemas de manera más eficiente.
+    \end{TipP}
+
+    \begin{AlertP}
+        Úsalo para advertir sobre errores comunes, desbordamientos de enteros
+        (overflow), casos borde complicados o complejidad temporal excesiva.
+    \end{AlertP}
+\end{frame}
+
+% --- Ejemplos ---
+%% NOTA: [fragile] es necesario para incluir verbatim
+\begin{frame}[fragile]{Ejemplos}
+    \begin{ExampleP}[title=Caso de Prueba]
+        Este cuadro es ideal para mostrar ejemplos concretos, como casos de
+        entrada y salida, trazas de ejecución paso a paso, o diagramas
+        explicativos.
+        
+        \textbf{Input:}
+        \begin{verbatim}
+        5
+        1 2 3 4 5
+        \end{verbatim}
+
+        \textbf{Output:}
+        \begin{verbatim}
+        15
+        \end{verbatim}
+    \end{ExampleP}
+\end{frame}

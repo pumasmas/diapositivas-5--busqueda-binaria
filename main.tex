@@ -1,0 +1,30 @@
+\documentclass[aspectratio=169]{beamer} % 16:9 widescreen
+\usepackage[utf8]{inputenc}
+
+% --- Estilos del club ---
+\usepackage{config/pumasmas}
+\input{macros}
+\input{cover}
+
+% --- Metadatos ---
+\title{Plantilla de Diapositivas Pu++}
+\author{Autor de la Presentación}
+\date{\today}
+
+\begin{document}
+
+% --- Portada ---
+\portadapumasmas
+\usebackgroundtemplate{}
+
+% --- Tabla de contenidos ---
+\begin{frame}{Contenido}
+    \tableofcontents
+\end{frame}
+
+% --- Secciones ---
+% Usa \include{sections/nombre_archivo} para modularizar.
+
+\include{sections/usage_guide}
+
+\end{document}

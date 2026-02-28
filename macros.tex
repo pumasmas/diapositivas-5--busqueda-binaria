@@ -1,0 +1,81 @@
+% --- Complexity Analysis ---
+\newcommand{\bigO}[1]{\mathcal{O}(#1)}
+\newcommand{\softO}[1]{\tilde{\mathcal{O}}(#1)}
+\newcommand{\omegaO}[1]{\Omega(#1)}
+\newcommand{\thetaO}[1]{\Theta(#1)}
+\newcommand{\smallo}[1]{o(#1)}
+
+% --- Mathematical Sets ---
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+% --- Algorithmic Notations ---
+\newcommand{\state}[1]{\text{state}(#1)}
+\newcommand{\dpstate}[1]{\text{dp}[#1]}
+\newcommand{\cost}[1]{\text{cost}(#1)}
+\newcommand{\dist}[1]{\text{dist}(#1)}
+
+% --- Number Theory ---
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\divisor}{\mid}
+\newcommand{\ndivisor}{\nmid}
+\newcommand{\modm}[1]{\pmod{#1}}
+\newcommand{\congmod}[3]{#1 \equiv #2 \pmod{#3}}
+\newcommand{\gcdop}[2]{\text{gcd}(#1, #2)}
+\newcommand{\lcmop}[2]{\text{lcm}(#1, #2)}
+\newcommand{\eulerphi}[1]{\phi(#1)}
+\newcommand{\mobius}[1]{\mu(#1)}
+\newcommand{\nCr}[2]{\binom{#1}{#2}}
+\newcommand{\nPr}[2]{P_{#2}^{#1}}
+
+% --- Formatting Shorthands ---
+\newcommand{\boldtopic}[1]{\textbf{#1}}
+\newcommand{\important}[1]{\textcolor{cp-accent}{\textbf{#1}}}
+\newcommand{\inlinecode}[1]{\texttt{#1}}
+
+% --- Problem Tags ---
+\newcommand{\tagcp}[1]{\hfill \fbox{\small\texttt{#1}}}
+
+% Helper for practice problem links
+\newcommand{\practiceproblemlink}[1]{%
+    \ifblank{#1}{%
+        \textcolor{cp-gray}{\textit{Link no disponible}}%
+    }{%
+        \scalebox{0.65}{\qrcode{#1}}%
+    }%
+}
+
+% --- Practice Problems ---
+% Usage: \practiceproblem{Name}{Difficulty}{Judge}{Link}
+\newcommand{\practiceproblem}[4]{%
+    \item \textbf{#1} \hfill \difficultybadge{#2} \\
+    \textit{Judge: #3} \hfill \practiceproblemlink{#4}
+}
+
+% --- Graph Theory Helpers ---
+\newcommand{\tree}[1]{T_{#1}}
+\newcommand{\graph}[1]{G_{#1}}
+\newcommand{\nodes}{V}
+\newcommand{\edges}{E}
+
+
+% --- Two-column code input ---
+% Uso: \twocolumnminted{archivo}{lenguaje}{última línea columna 1}
+\newcommand{\twocolumnminted}[3]{%
+  \begingroup
+    \newcount\startline
+    \startline=#3
+    \advance\startline by 1
+    \begin{columns}
+      \begin{column}{0.48\textwidth}
+        \inputminted[firstline=1,lastline=#3,linenos,fontsize=\tiny,numbersep=3pt,breaklines]{#2}{#1}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \inputminted[firstline=\the\startline,linenos,fontsize=\tiny,numbersep=3pt,breaklines]{#2}{#1}
+      \end{column}
+    \end{columns}
+  \endgroup
+}

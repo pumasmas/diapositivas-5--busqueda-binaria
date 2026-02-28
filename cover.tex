@@ -1,0 +1,55 @@
+% --- Custom title page template ---
+\setbeamertemplate{title page}{%
+  \begin{center}
+    % Logo at top right, slightly smaller
+    %\hfill\includegraphics[height=2.0cm]{logo.png}\hspace*{0.5cm}\\[0.8cm]
+    \vspace{3.3cm}
+
+    % Title block raised a bit
+    \vspace{-0.5cm} % shift upward
+    {\Huge\bfseries\color{white}\inserttitle\par}
+    \vspace{5mm}
+    {\Large\itshape\color{white}Por: \insertauthor\par}
+    \vspace{2mm}
+    {\normalsize\color{white}Club de Programación Competitiva Pu++\par}
+    \vspace{8mm}
+    {\large\color{white}\insertdate\par}
+  \end{center}
+}
+
+% --- Cover slide with custom background ---
+\newcommand{\portadapumasmas}[0]%
+{
+\usebackgroundtemplate{%
+  \begin{tikzpicture}[remember picture,overlay]
+
+    % Gradient background
+    \path[shade, left color=cover-left, right color=cover-right]
+      (current page.south west) rectangle (current page.north east);
+
+    % Large translucent accents
+    \fill[white,opacity=0.05,rotate=25]
+      (current page.center) circle (7cm);
+
+    \fill[white,opacity=0.03,rotate=-15]
+      (current page.north east) circle (5cm);
+
+    % Angled bars
+    \fill[cover-left!50!black,opacity=0.2]
+      (current page.south west) -- ++(5,0) -- ++(2,2) -- ++(-5,0) -- cycle;
+
+    \fill[cover-right!50!black,opacity=0.2]
+      (current page.north east) -- ++(-5,0) -- ++(-2,-2) -- ++(5,0) -- cycle;
+
+    % Subtle scattered circles
+    \foreach \i in {1,...,20}{
+      \fill[white,opacity=0.04] 
+        (rand*14-7, rand*10-5) circle (rand*0.3);
+    }
+
+  \end{tikzpicture}%
+}
+\begin{frame}[plain,noframenumbering] % no slide number on cover
+  \titlepage
+\end{frame}
+}

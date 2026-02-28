@@ -1,0 +1,192 @@
+% --- pumasmas.sty ---
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{config/pumasmas}[2026/02/12 Paquete de estilos para presentaciones Pu++]
+
+% --- Typography ---
+\RequirePackage[T1]{fontenc}
+\RequirePackage[default]{sourcesanspro}
+\RequirePackage{microtype}
+
+% --- Language & Utilities ---
+\RequirePackage[spanish,es-tabla]{babel} % Spanish support
+\RequirePackage{graphicx}                % Images
+\RequirePackage{xcolor}                  % Colors
+\RequirePackage{xstring}                 % String manipulation
+\RequirePackage{etoolbox}                % Programming tools
+
+% --- Color Palette ---
+\definecolor{cp-orange}{RGB}{255, 140, 0}
+\definecolor{cp-red}{RGB}{220, 53, 69}
+\definecolor{cp-blue}{RGB}{0, 90, 160}
+\definecolor{cp-green}{RGB}{40, 167, 69}
+\definecolor{cp-emerald}{RGB}{32, 178, 170}
+\definecolor{cp-gray}{RGB}{108, 117, 125}
+\definecolor{cp-purple}{RGB}{111, 66, 193}
+\definecolor{cp-accent}{HTML}{5432d1}
+\definecolor{cover-left}{HTML}{3600a2}
+\definecolor{cover-right}{HTML}{5432d1}
+\definecolor{theme-brand-color}{HTML}{3600a2}
+
+% --- Beamer Theme Customization ---
+\RequirePackage{beamerthemesplit}
+\usetheme{Madrid}
+\usecolortheme[named=theme-brand-color]{structure}
+\setbeamercolor{headline}{bg=theme-brand-color, fg=white}
+\setbeamertemplate{navigation symbols}{} % remove navigation icons
+\setbeamertemplate{footline}[frame number] % show frame numbers
+\setbeamertemplate{itemize item}{\tikz[baseline=-0.6ex]{\fill[theme-brand-color] (0,0) circle (2pt);}}
+\setbeamertemplate{itemize subitem}{\tikz[baseline=-0.6ex]{\fill[theme-brand-color] (0,0) circle (1.5pt);}}
+\setbeamertemplate{itemize subsubitem}{\tikz[baseline=-0.6ex]{\fill[theme-brand-color] (0,0) circle (1pt);}}
+\setbeamertemplate{section in toc}[square]
+\setbeamertemplate{subsection in toc}[square]
+\setbeamertemplate{subsubsection in toc}[square]
+\setbeamersize{text margin left=2em,text margin right=2em}
+
+% --- Fonts for Beamer ---
+\setbeamerfont{title}{family=\sffamily,series=\bfseries,size=\Huge}
+\setbeamerfont{frametitle}{family=\sffamily,series=\bfseries,size=\Large}
+\setbeamerfont{normal text}{family=\sffamily}
+
+% --- Code config ---
+\RequirePackage{minted}
+\usemintedstyle{xcode}
+\setminted{
+    linenos,
+    frame=single,
+    framesep=2mm,
+    fontsize=\scriptsize,
+    breaklines,
+    numbersep=3pt
+}
+\renewcommand\theFancyVerbLine{\tiny\arabic{FancyVerbLine}}
+
+% --- QR codes ---
+\RequirePackage{qrcode}
+
+% --- Cool Icons ---
+\RequirePackage{fontawesome5}
+
+% --- For Custom Boxes ---
+\RequirePackage[most]{tcolorbox}
+
+% --- Difficulty Badge ---
+\newtcbox{\badgebox}[1][cp-gray]{
+    on line,
+    arc=3pt,
+    colback=#1,
+    colframe=#1,
+    boxrule=0pt,
+    boxsep=0pt,
+    left=3pt, right=3pt, top=1pt, bottom=1pt,
+    fontupper=\sffamily\bfseries\color{white}\footnotesize
+}
+
+\newcommand{\difficultybadge}[1]{%
+    \IfStrEqCase{#1}{%
+        {Easy}{\badgebox[cp-green]{#1}}%
+            {Fácil}{\badgebox[cp-green]{#1}}%
+            {Medium}{\badgebox[cp-orange]{#1}}%
+            {Medio}{\badgebox[cp-orange]{#1}}%
+            {Hard}{\badgebox[cp-red]{#1}}%
+            {Difícil}{\badgebox[cp-red]{#1}}%
+            {Very Hard}{\badgebox[cp-purple]{#1}}%
+            {Muy Difícil}{\badgebox[cp-purple]{#1}}%
+    }[\badgebox{#1}]%
+}
+
+% --- Math Packages ---
+\RequirePackage{amsmath, amsfonts, amssymb, amsthm}
+\RequirePackage{mathtools}
+
+% --- Title Page Customization ---
+\defbeamertemplate*{title page}{custom}[1][]
+{
+    \centering
+    \vspace{2cm}
+    {\scshape\LARGE Club de Programación Competitiva Pu++ \par}
+    \vspace{1cm}
+    {\Huge\bfseries\sffamily \inserttitle \par}
+    \vspace{0.5cm}
+    {\Large\sffamily Presentación de clase \par}
+    \vspace{1.5cm}
+    {\Large\itshape Por: \insertauthor \par}
+    \vfill
+    {\large \today \par}
+}
+
+% --- Custom Boxes for Slides ---
+\newtcolorbox{TipP}[1][]{
+    enhanced,
+    colback=cp-orange!10!white,
+    colframe=cp-orange,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries,
+    title=\faLightbulb\ \ Consejo,
+    #1
+}
+
+\newtcolorbox{AlertP}[1][]{
+    enhanced,
+    colback=cp-red!10!white,
+    colframe=cp-red,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries,
+    title=\faExclamationTriangle\ \ Cuidado,
+    #1
+}
+
+\newtcolorbox{DefinitionP}[1][]{
+    enhanced,
+    colback=cp-blue!10!white,
+    colframe=cp-blue,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries\sffamily,
+    title=Definición,
+    #1
+}
+
+\newtcolorbox{TheoremP}[1][]{
+    enhanced,
+    colback=cp-green!10!white,
+    colframe=cp-green,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries\sffamily,
+    title=Teorema,
+    #1
+}
+
+\newtcolorbox{ExampleP}[1][]{
+    enhanced,
+    colback=cp-gray!10!white,
+    colframe=cp-gray,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries\sffamily,
+    title=Ejemplo,
+    #1
+}
+
+\newtcolorbox{ExerciseP}[1][]{
+    enhanced,
+    colback=cp-purple!10!white,
+    colframe=cp-purple,
+    arc=3mm,
+    boxrule=0.8mm,
+    fonttitle=\bfseries\sffamily,
+    title=Ejercicio,
+    #1
+}
+
+% --- Hyperlinks and Metadata ---
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cp-accent,
+    urlcolor=cp-accent,
+    citecolor=cp-accent,
+    filecolor=cp-accent,
+}
