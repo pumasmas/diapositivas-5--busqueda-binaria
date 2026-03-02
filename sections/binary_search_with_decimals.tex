@@ -1,0 +1,102 @@
+
+\subsection{Busqueda binaria con decimales}
+
+\begin{frame}[plain]
+	\centering
+	\color{theme-brand-color}
+	\Huge \textbf{Busqueda binaria con decimales}
+\end{frame}
+
+\begin{frame}{Busqueda binaria con decimales}
+	Si tenemos \(l = 0.0\) y \(r = 10.0\), donde \(l, r \in \mathbb{R}\), habrá un número infinito de
+	numeros reales en el intervalo \([l, r]\). Pero en números decimales con dos cifras después del punto hay...
+\end{frame}
+
+\begin{frame}{Busqueda binaria con decimales}
+	En este caso tenemos una presición de $10^{-2}$, entonces si bien hay 10 enteros entre $1$ y $10$, si contamos la presición tendremos un total de $1000$ números:
+
+	\begin{align*}
+		1.00   \\
+		1.01   \\
+		\vdots \\
+		2.00   \\
+		2.01   \\
+		\vdots \\
+		10.00
+	\end{align*}
+	En general, podemos decir que si buscamos presición de $\epsilon$, entonces hace falta considerar $\frac{r - l}{\epsilon}$ números
+\end{frame}
+
+\begin{frame}{Búsqueda binaria con decimales}
+	Comúnmente hay problemas donde nos dicen que la respuesta será considerada si el error absoluto no es más grande que $10^{-6}$. Entonces, si por ejemplo tenemos:
+	\[
+		\begin{aligned}
+			l        & = 0.0     \\
+			r        & = 10^{9}  \\
+			\epsilon & = 10^{-6}
+		\end{aligned}
+	\]
+
+	Consideraremos un total de:
+	\[
+		\dfrac{r - l}{\epsilon} = \dfrac{10^{9} - 0}{10^{-6}} = 10^{9} \cdot 10^{6} = 10^{15}
+	\]
+\end{frame}
+
+\begin{frame}{¿Cómo hacemos binary search con decimales?}
+	Sabemos que el algoritmo de binary search divide el espacio de busqueda en $2$ cada vez, y con lo anterior vimos que nuestro espacio de busqueda es de $\frac{r-l}{\epsilon}$ números, entonces binary search tomará $\log_2(\frac{r-l}{\epsilon})$ pasos en llegar a la respuesta.
+
+	\vspace{0.5cm}
+
+	Entonces en vez de hacer un \texttt{while($l \leq r$){$\dots$}}, es mejor hacer un número de iteraciones correspondinete al valor de \(\log_2({\frac{r-l}{\epsilon}})\)
+\end{frame}
+
+
+\begin{frame}{Problema ejemplo}
+	\begin{ExampleP}[title=Equation]
+		Encuentra el número $x$ tal que $x^{2} + \sqrt{x} = c$.
+
+		\textbf{Input:}
+
+		Solo un número $c \in \mathbb{R}$ tal que $1.0 \leq c \leq 10^{10}$
+
+		\textbf{Output: }
+
+		Imprime el número $x$ requerido. La respuesta será considerada correcta si el error absoluto no es más grande que $10^{-6}$
+	\end{ExampleP}
+
+	\begin{ExampleP}
+		\textbf{input: }
+		$15.6$
+
+		\textbf{output: }
+		$3.698232168829691$
+	\end{ExampleP}
+\end{frame}
+
+\begin{frame}[fragile]{Solución a 'Equation'}
+	\begin{center}
+		\begin{minipage}{0.8\textwidth}
+			\inputminted[
+				firstline=1,
+				lastline=24,
+				linenos,
+				fontsize=\tiny,
+				numbersep=3pt,
+				breaklines
+			]{cpp}{code/binary_search_on_the_answer/equation.cpp}
+		\end{minipage}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+
+	\begin{TipP}
+
+		\textbf{Observación: } Se hace $l = mid$ y $r = mid$ y no $l = mid \pm 1$ o $r = mid \pm 1$ pues eso nos alejaría más de la respuesta
+	\end{TipP}
+
+	\begin{TipP}
+		\textbf{Nota: } En general, con un número de iteraciones de $60$ para el \texttt{for} es suficiente para muchos problemas, pero se acostumbra a poner $100$ o $200$
+	\end{TipP}
+\end{frame}
