@@ -7,7 +7,7 @@
 \end{frame}
 
 \begin{frame}{Idea}
-  Otra manera de hacer búsqueda binaria es mediante saltos. Si comenzamos en la posición \texttt{pos=0} y en cada iteración avanzamos mientras \texttt{p+jump} no salga del arreglo y \texttt{A[p+jump]} no exceda el valor buscado $x$.\\
+  Otra manera de hacer búsqueda binaria es mediante saltos. Si comenzamos en la posición \texttt{pos=0} y en cada iteración avanzamos mientras \texttt{pos+jump} no salga del arreglo y \texttt{A[pos+jump]} no exceda el valor buscado $x$.\\
 
   Realizando saltos desde $\frac{N}{2} \rightarrow \frac{N}{4} \rightarrow \cdots \rightarrow 1$, \textit{i.e.}, disminuyendo la velocidad conforme nos acercamos al valor buscado.\\
 
